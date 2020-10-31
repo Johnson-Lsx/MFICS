@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{xypic}
+\usepackage{txfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{amsmath, mathtools,amssymb}
+\usepackage{amsfonts,semantic,colortbl,mathrsfs,stmaryrd}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{graphicx}
+\date{Feb 14, 2012}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{eg}{Example}
+\newtheorem{hw}{Problem}
+\newcommand{\xor}{\otimes}
+\newenvironment{sol}
+  {\par\vspace{3mm}\noindent{\it Solution}.}
+  {\qed}
+\begin{document}
+\begin{center}
+{\LARGE\bf Homework 8}\\
+\vspace{2mm}
+\end{center}
+
+\begin{hw}
+We have 27 fair coins and one counterfeit coin (28 coins in all), which looks like a fair coin but is a bit heavier. Show that one needs at least 4 weighings to determine the counterfeit coin. We have no calibrated weights, and in one weighing we can only find out which of two groups of some $k$ coins each is heavier, assuming that if both groups consist of fair coins only the result is an equilibrium.
+\end{hw}
+\begin{sol}
+	We first say that there is one way to determine the counterfeit coin using $4$ weighings. We can do it in the following way.
+	\begin{enumerate}
+		\item Divide the total $28$ coins into $2$ parts, each part consists of $14$ coins. We then weigh the two parts and choose the heavier part.
+		
+		\item Divide the $14$ coins into $2$ parts, each part consists of $7$ coins. We then weigh the two parts and choose the heavier part.
+		
+		\item Divide the $7$ coins into $3$ parts, two of them consist of $3$ coins and the rest one consists of only $1$ coin. We then weigh the two parts which consist of $3$ coins, if they are the same weight, then the rest one is the counterfeit coin, if not, we choose the heavier part.
+		
+		\item  Divide the $3$ coins into $3$ parts, each consists of $1$ coin. We randomly choose two parts to weigh, and if they are the same weight, then the rest one is the counterfeit coin, if not, the heavier one is the counterfeit coin.
+	\end{enumerate}
+	We can also see from the above process that if we only use $3$ weighings, we may fail to determine the counterfeit coin. Thus, we need at least $4$ weighings to determine the counterfeit coin.
+\end{sol}
+
+
+\begin{hw}
+\begin{enumerate}
+  \item Prove that, for every integer $n$, there exists a coloring of the edges of the complete graph $K_n$ by two colors so that the total number of monochromatic copies of $K_4$ is at most ${n\choose 4}2^{-5}$.
+  \item Give a randomized algorithm for finding a coloring with at most ${n \choose 4}2^{-5}$ monochromatic (i.e. single-color) copies of $K_4$ that runs in expected time polynomial in $n$.
+\end{enumerate}
+\end{hw}
+\begin{sol}
+	\begin{enumerate}
+		\item For each edge in the complete graph $K_n$, we randomly color it red or blue. Thus, the probability that a $K_4$ subgraph is monochromatic equals to $2 \cdot \frac{1}{2^{{4 \choose 2}}} = 2^{-5}$. The expectation of the number of monochromatic copies of $K_4$ is ${n \choose 4}2^{-5}$. Thus, there must be a coloring of the edges of the complete graph $K_n$ by two colors so that the total number of monochromatic copies of $K_4$ is at most ${n\choose 4}2^{-5}$.
+		
+		\item The randomized algorithm is coloring the edges of $K_n$ randomly into red or blue and find if there is a coloring meets the requirement. We say that the algorithm runs in expected time polynomial in $n$. Let $p = Pr(X \leq {n \choose 4}2^{-5})$, where $X$ is the number of $K_4$ subgraph in $K_n$. From question $1$, we have
+		\begin{displaymath}
+			\begin{array}{lcl}
+				{n \choose 4}2^{-5} & = & E(X) \\
+									& = & \sum_{i \leq {n \choose 4}2^{-5}}i \cdot Pr(X = i) + \sum_{i > {n \choose 4}2^{-5}}i \cdot Pr(X = i) \\
+									& \geq & p + (1-p)({n \choose 4} + 1)
+			\end{array}
+		\end{displaymath}
+		Thus, $p \geq \frac{32}{{n \choose 4}}$. The excepted number of samples before finding a coloring is therefore just $\frac{{n \choose 4}}{32}$ and each sample costs at most $O({n \choose 4})$ time. Thus, the algorithm runs in expected time polynomial in $n$.
+	\end{enumerate}
+\end{sol}
+
+
+
+\begin{hw}
+Use the Lovasz local lemma to show that if \[4 {k \choose 2} {n \choose {k-2}}2^{1-{k\choose 2}}\leq 1\]
+then it is possible to color the edges of $K_n$ with two colors so that it has no monochromatic (i.e. single color) $K_k$ subgraph.
+\end{hw}
+\begin{sol}
+	Let $E_{i}$ denote that the $i$th $K_k$ subgraph is monochromatic, we have $Pr(E_i) = 2 \cdot \frac{1}{2^{{k \choose 2}}} = 2^{1-{k\choose 2}}$. And the degree of the dependency graph given by $E_1, E_2, \dots, E_n$ is bounded by ${k \choose 2} {n \choose {k-2}}$. From the question we have $4 {k \choose 2} {n \choose {k-2}}2^{1-{k\choose 2}}\leq 1$. Thus, by \emph{Lovasz local lemma} we have $Pr(\bigcap_{i = 1}^n \overline{E_i}) > 0$, that is, it is possible to color the edges of $K_n$ with two colors so that it has no monochromatic $K_k$ subgraph.
+\end{sol}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: tex-pdf
+%%% TeX-master: t
+%%% End:

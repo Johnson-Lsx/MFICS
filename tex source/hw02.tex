@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{xypic}
+\usepackage{txfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{amsmath, mathtools,amssymb}
+\usepackage{amsfonts,semantic,colortbl,mathrsfs,stmaryrd}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{tikz}
+\date{Feb 14, 2012}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{eg}{Example}
+\newtheorem{hw}{Problem}
+\newcommand{\xor}{\otimes}
+\newenvironment{sol}
+  {\par\vspace{3mm}\noindent{\it Solution}.}
+  {\qed}
+\begin{document}
+\begin{center}
+{\LARGE\bf Homework 2}\\
+\vspace{2mm}
+
+\end{center}
+
+\begin{hw}
+Draw the Hasse diagram of the set of all subsets of ${1,2, 3}$ ordered by inclusion.
+\end{hw}
+\begin{sol}
+	\begin{minipage}[h]{0.8\textwidth}
+		\centering
+	\begin{tikzpicture}[scale=2]
+	\tikzstyle{every node}=[draw,shape=circle];
+	\path (2,1) node (v0) {$\emptyset$};
+	\path (1,2) node (v1) {$\{1\}$};
+	\path (2,2) node (v2) {$\{2\}$};
+	\path (3,2) node (v3) {$\{3\}$};
+	\path (1,3) node (v4) {$\{1,2\}$};
+	\path (2,3) node (v5) {$\{1,3\}$};
+	\path (3,3) node (v6) {$\{2,3\}$};
+	\path (2,4) node (v7) {$\{1,2,3\}$};
+	\draw (v0) -- (v1)
+	(v0) -- (v2)
+	(v0) -- (v3)
+	(v1) -- (v4)
+	(v2) -- (v4)
+	(v1) -- (v5)
+	(v3) -- (v5)
+	(v2) -- (v6)
+	(v3) -- (v6)
+	(v4) -- (v7)
+	(v5) -- (v7)
+	(v6) -- (v7);
+	\end{tikzpicture}
+\end{minipage}
+\end{sol}
+\iffalse
+\begin{hw} A relation that is \emph{irreflexive} (or anti-reflexive),  is a binary relation on a set where no element is related to itself.
+Prove that a binary relation $\mathcal{R}$ on a set S (i.e., $\mathcal{R}\subseteq S\times S$) is a strict partial order on $S$  if and only if it is irreflexive, transitive, and antisymmetric.
+\end{hw}
+\fi
+\begin{hw}
+Let$(X,\preceq_1)$, $(Y,\preceq_2)$ be (partially) ordered sets. We say that they are \emph{isomorphic} if there exists a bijection $f:X\rightarrow Y$ such that for every $x,y\in X$, we have $x\preceq_1 y$ if and only if $f(x)\preceq_2 f(y)$.
+\begin{enumerate}
+  \item Draw Hasse diagrams for all nonisomorphic 3-element posets.
+  \item Prove that any two $n$-element linearly ordered sets are isomorphic.
+  \item Prove that $(\mathbb{N},\leq)$ and $(\mathbb{Q},\leq)$ are not isomorphic. ( where $\mathbb{N}$ is the set of natural numbers, $\mathbb{Q}$ is the set of rational numbers, $\leq$ is the usual `less or equal to' between numbers).
+\end{enumerate}
+\end{hw}
+\begin{sol}
+	\begin{enumerate}
+		\item
+		\begin{minipage}[h]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=2]
+			\tikzstyle{every node}=[draw,shape=circle];
+			\path (1,1) node (v0) {};
+			\path (1.5,1) node (v1) {};
+			\path (2,1) node (v2) {};
+			\end{tikzpicture}
+		\end{minipage}
+		\hspace{5mm}
+		\begin{minipage}[h]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=2]
+			\tikzstyle{every node}=[draw,shape=circle];
+			\path (2,1) node (v0) {};
+			\path (2,1.5) node (v1) {};
+			\path (2,2) node (v2) {};
+			\draw (v0) -- (v1)
+				  (v1) -- (v2);
+			\end{tikzpicture}
+		\end{minipage}
+		\vspace{10mm}
+		\begin{minipage}[h]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=2]
+			\tikzstyle{every node}=[draw,shape=circle];
+			\path (2,1.5) node (v0) {};
+			\path (1.5,1) node (v1) {};
+			\path (2.5,1) node (v2) {};
+			\draw (v0) -- (v1)
+			(v0) -- (v2);
+			\end{tikzpicture}
+		\end{minipage}
+		\hspace{5mm}
+		\begin{minipage}[h]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=2]
+			\tikzstyle{every node}=[draw,shape=circle];
+			\path (2,1) node (v0) {};
+			\path (1.5,1.5) node (v1) {};
+			\path (2.5,1.5) node (v2) {};
+			\draw (v0) -- (v1)
+			(v0) -- (v2);
+			\end{tikzpicture}
+		\end{minipage}
+	
+		\item Let $X, Y$ be two linearly ordered sets each with $n$ elements. Since $X$ is a linearly ordered set, every pair of elements in $X$ are comparable, so dose $Y$. For the sake of convenience, we assume that $x_{1} \preceq x_{2} \preceq \cdots \preceq x_{n}$ and $y_{1} \preceq y_{2} \preceq \cdots \preceq y_{n}$. ($x_{i}, y_{i}$ is the $i$th element in $X$ and $Y$.) Now we can construct the bijection function $f$, which creats a one-to-one correspondence with $x_{i}$ and $y_{i}$, that is, $f(x_{i}) = y_{i}$ and $f^{-1}(y_{i}) = x_{i}$. It is easy to see that for every $x_{i},x_{j}\in X$, we have $x_{i}\preceq_1 x_{j}$ if and only if $f(x_{i})\preceq_2 f(x_{j})$. Thus, any two $n$-element linearly ordered sets are isomorphic.
+		
+		\item If $(\mathbb{N},\leq)$ and $(\mathbb{Q},\leq)$ are isomorphic, then there exists a bijection $f$ and for every $x,y\in X$, we have $x\preceq_1 y$ if and only if $f(x)\preceq_2 f(y)$. Suppose that $f(0) = p, f(1) = q$ ($p, q$ are rational numbers), since $0 < 1$, we have $p < q$, further more $p < \frac{p + q}{2}$ and $\frac{p + q}{2} < q$. Since $f$ is a bijection, there must be a natural number, say $i$, that has a one-to-one correspondence with $\frac{p + q}{2}$, but since $p < \frac{p + q}{2}$ and $\frac{p + q}{2} < q$, we have $f^{-1}(p) < f^{-1}(\frac{p + q}{2})$ and $f^{-1}(\frac{p + q}{2}) < f^{-1}(q)$, so $0 < i$ and $i < 1$, there is no such a natural number satisfying this. Thus we can conclude that $(\mathbb{N},\leq)$ and $(\mathbb{Q},\leq)$ are not isomorphic.
+	\end{enumerate}
+\end{sol}
+
+\begin{hw}
+Prove or disprove: If a partially ordered set $(X,\preceq)$ has a single minimal element, then it is a smallest element as well.
+\end{hw}
+\begin{sol}
+	This statement is wrong. Consider the set $\{a\} \cup \mathbb{Q}$ ($a$ is just the character `a' in the alphabet) and the partial ordering $\leq$ on this set. ($\leq$ is the usual `less or equal to' between numbers.) Since the element $a$ in this set is incomparable to any other element, thus $a$ is a minimal element. It is easy to see that $a$ is the only minimal element, but $a$ is not a smallest element. Thus the statement is wrong.
+\end{sol}
+
+
+\begin{hw}
+Let $(X,\preceq)$ and $(X',\preceq')$ be partially ordered sets. A mapping $f:X\rightarrow X'$ is called an embedding of $(X,\preceq)$ into $(X',\preceq')$ if the following conditions hold:
+\begin{itemize}
+  \item $f$ is an injective mapping;
+  \item $f(x)\preceq' f(y)$ if and only if $x\preceq y$.
+\end{itemize}
+
+Now consider the following problem
+
+\begin{enumerate}[a)]
+  \item Describe an embedding of the set $\{1,2\}\times \mathbb{N}$ with the lexicographic ordering into the ordered set $(\mathbb{Q},\leq)$.
+  \item Solve the analog of a) with the set $\mathbb{N}\times \mathbb{N}$ (ordered lexicographically) instead of $\{1,2\}\times \mathbb{N}$.
+ \end{enumerate}
+
+ \end{hw}
+ \begin{sol}
+ 	\begin{enumerate}[a)]
+ 		\item We can find a function that $f(\left\langle i,n\right\rangle ) = i - \frac{1}{2^{n}}$ where $i \in \{1,2\}$ and $n \in \mathbb{N}$, this function maps any element in the set $\{1,2\}\times \mathbb{N}$ with a rational number in $\mathbb{Q}$. For any $\left\langle i_{1}, n_{1}\right\rangle , \left\langle i_{2}, n_{2} \right\rangle $ in the set $\{1,2\}\times \mathbb{N}$, if $\left\langle i_{1}, n_{1}\right\rangle \neq \left\langle i_{2}, n_{2} \right\rangle $, we have $f(\left\langle i_{1},n_{1}\right\rangle ) \neq f(\left\langle i_{2},n_{2}\right\rangle )$, thus $f$ is an injective mapping. We also have $f(\left\langle i_{1},n_{1}\right\rangle ) \leq f(\left\langle i_{2},n_{2}\right\rangle )$ if and only if $\left\langle i_{1}, n_{1}\right\rangle \leq \left\langle i_{2}, n_{2} \right\rangle $ (in the lexicographic order). Thus, we can say $f$ is an embedding of the set $\{1,2\}\times \mathbb{N}$ with the lexicographic ordering into the ordered set $(\mathbb{Q},\leq)$.
+ 		
+ 		\item We can use the same injective function $f$ as in $(a)$.
+ 	\end{enumerate}
+ \end{sol}
+
+
+ \begin{hw}
+ Prove the following strengthening of the \textbf{Erd$\ddot{o}$s-Szekeres Lemma}: Let $\kappa,\ell$ be natural numbers. Then every sequence of real numbers of length $\kappa\ell
+ +1$ contains an nondecreasing subsequence of length $\kappa+1$ or a decreasing subsequence of length $\ell+1$.
+ \end{hw}
+ \begin{sol}
+ 	Proof by contradiction. Let the $\kappa\ell + 1$ elements in the sequence be denoted as $a_{1}, a_{2}, \dots, a_{\kappa\ell +1}$. Suppose the argument is wrong, then the length of every nondecreasing subsequence is less than or equal to $\kappa$, and the length of every decreasing subsequence is less than or equal to $\ell$. 
+ 	
+ 	We denote the length of the longest nondecreasing subsequence starts with $a_{i}$ as $x_{i}$ and the length of the longest decreasing subsequence starts with $a_{i}$ as $y_{i}$. For each element in the sequence, we have a ordered pair $\left\langle x_{i}, y_{i}\right\rangle$. Since there are $\kappa\ell + 1$ elements, we have $\kappa\ell + 1$ ordered pairs, we also have $1 \leq x_{i} \leq \kappa$ and $1 \leq y_{i} \leq \ell$. Thus there must be two ordered pairs, say $\left\langle x_{i}, y_{i}\right\rangle, \langle x_{j}, y_{j}\rangle$, which are exactly the same. 
+ 	
+ 	We say this should not happen, if $a_{j}$ is after $a_{i}$ in the sequence, and if $a_{i} \leq a_{j}$, then we should have $x_{i} > x_{j}$, if $a_{i} \geq a_{j}$, then we should have $y_{i} > y_{j}$. If $a_{j}$ is before $a_{i}$ in the sequence, and if $a_{i} \leq a_{j}$, then we should have $y_{j} > y_{i}$, if $a_{i} \geq a_{j}$, then we should have $x_{j} > x_{i}$. Thus $\left\langle x_{i}, y_{i}\right\rangle$ can not be the same as $\langle x_{j}, y_{j}\rangle$.
+ \end{sol}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: tex-pdf
+%%% TeX-master: t
+%%% End:

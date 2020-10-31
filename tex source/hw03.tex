@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{xypic}
+\usepackage{txfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{amsmath, mathtools,amssymb}
+\usepackage{amsfonts,semantic,colortbl,mathrsfs,stmaryrd}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{graphicx}
+\date{Feb 14, 2012}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{eg}{Example}
+\newtheorem{hw}{Problem}
+\newcommand{\xor}{\otimes}
+\newenvironment{sol}
+  {\par\vspace{3mm}\noindent{\it Solution}.}
+  {\qed}
+\begin{document}
+\begin{center}
+{\LARGE\bf Homework 3}\\
+\vspace{2mm}
+
+\end{center}
+\begin{hw}Prove the formula
+\begin{enumerate}
+\item
+  ${r\choose r} +{r+1 \choose r}+{r+2 \choose r}+\cdots+{n\choose r} ={n+1 \choose r+1}$
+
+ \item $\sum_{k=0}^{n} {m+k-1 \choose k} ={n+m \choose n}$
+
+\end{enumerate}
+\end{hw}
+\begin{sol}
+	\begin{enumerate}
+		\item We have ${n+1 \choose r+1} = {n \choose r} + {n \choose r+1}$, ${n \choose r+1} = {n-1 \choose r} + {n-1 \choose r+1}$, $\cdots$, ${r+2 \choose r+1} = {r+1 \choose r} + {r+1 \choose r+1}$ and ${r+1 \choose r+1} = {r \choose r}$. Thus, we have $${n+1 \choose r+1} = {r\choose r} +{r+1 \choose r}+{r+2 \choose r}+\cdots+{n\choose r}$$.
+		
+		\item We have ${m+n \choose n} = {m+n-1 \choose n} + {m+n-1 \choose n-1}$, ${m+n-1 \choose n-1} = {m+n-2 \choose n-1} + {m+n-2 \choose n-2}$, $\cdots$, ${m+1 \choose 1} = {m \choose 1} + {m \choose 0}$ and ${m \choose 0} = {m-1 \choose 0}$. Thus, we have $${n+m \choose n} = \sum_{k=0}^{n} {m+k-1 \choose k}$$
+	\end{enumerate}
+\end{sol}
+
+\begin{hw}
+For natural numbers $m\leq n$ calculate (i.e. express by a simple formula not containing a sum) $\sum_{k=m}^n {k \choose m}{n \choose k}$.
+\end{hw}
+\begin{sol}
+	By definition, we have $${k \choose m}{n \choose k} = \frac{k!}{m!(k-m)!}\cdot\frac{n!}{k!(n-k)!} = \frac{n!}{m!(n-m)!}\cdot\frac{(n-m)!}{(k-m)!(n-k)!} = {n \choose m}{n-m \choose k-m}$$
+	Thus, we have $$\sum_{k=m}^n {k \choose m}{n \choose k} = {n \choose m}\sum_{k=m}^n{n-m \choose k-m} = 2^{n-m}{n \choose m}$$
+\end{sol}
+
+
+\begin{hw}
+Calculate (i.e. express by a simple formula not containing a sum)
+\begin{enumerate}
+  \item $\sum_{k=1}^n {k\choose m}\frac{1}{k}$
+  \item $\sum_{k=0}^n{k\choose m}k$
+\end{enumerate}
+\end{hw}
+\begin{sol}
+	\begin{enumerate}
+		\item By definition, we have ${k\choose m}\frac{1}{k} = \frac{k!}{m!(k-m)!}\cdot\frac{1}{k} = \frac{(k-1)!}{m!(n-m)!} = \frac{1}{m} \cdot \frac{(k-1)!}{(m-1)!(n-m)!} = \frac{1}{m}{k-1 \choose m-1}$. Thus, we have $$\sum_{k=1}^n {k\choose m}\frac{1}{k} = \frac{1}{m}\sum_{k=1}^n {k-1\choose m-1} = \frac{1}{m}\left({0 \choose m}+{0 \choose m-1} + \cdots + {n-1 \choose m-1}\right) = \frac{1}{m}{n \choose m}$$
+		
+		\item By definition, we have $${k\choose m}k = \frac{k!}{m!(k-m)!}\cdot(k+1-1) = (m+1)\frac{(k+1)!}{(m+1)!(k-m)!} - \frac{k!}{m!(k-m)!} = (m+1){k+1 \choose m+1} - {k \choose m}$$ Thus, we have $$\sum_{k=0}^n{k\choose m}k = (m+1)\sum_{k=0}^{n}{k+1 \choose m+1} - \sum_{k=0}^{n}{k \choose m} = (m+1){n+2 \choose m+2} - {n+1 \choose m+1} $$
+	\end{enumerate}
+\end{sol}
+
+\begin{hw}
+\begin{enumerate}[(a)]
+\item Using \emph{\textbf{Problem 1.}} for $r=2$, calculate the sum $\sum_{i=2}^n i(i-1)$ and $\sum_{i=1}^n i^2$.
+\item Use $(a)$ and \emph{\textbf{Problem 1.}}  for $r=3$, calculate $\sum_{i=1}^n i^3$.
+\end{enumerate}
+\end{hw}
+\begin{sol}
+	\begin{enumerate}[(a)]
+		\item For $r = 2$, we have $$\sum_{i=2}^n i(i-1) = 2!\left({2\choose 2} +{3 \choose 2}+{4 \choose 2}+\cdots+{n\choose 2}\right) = 2{n+1 \choose 3}$$
+		Since $i^2 = i(i-1) + i$, we have $$\sum_{i=1}^{n}i^{2} = \sum_{i=1}^{n}(i(i-1) + i) = 2{n+1 \choose 3} + \sum_{i=1}^{n}i = \frac{n(n+1)(2n+1)}{6}$$
+		
+		\item For $r = 3$, we have $${3\choose 3} +{4 \choose 3}+{5 \choose 3}+\cdots+{n\choose 3} = {n+1 \choose 4}$$ Thus, we have $\sum_{i=3}^{n}({i(i-1)(i-2)})/{3!} = {n+1 \choose 4}$, so $\sum_{i=3}^{n}i^{3} - 3i^{2} + 2i = 6{n+1 \choose 4}$. Since we already have $\sum_{i=1}^{n}i^{2} = (n(n+1)(2n+1))/6$, we can figure out that $\sum_{i=1}^n i^3 = n^{2}(n+1)^{2}/4$.
+	\end{enumerate}
+\end{sol}
+
+\begin{hw}
+Count the number of linear extensions for the following partial ordering:
+
+ $X$ is a disjoint union of sets $X_1, X_2,\ldots, X_k$ of sizes $r_1, r_2,\ldots, r_k$, respectively. Each $X_i$ is linearly ordered by $\preceq$, and no two elements from the different $X$ are comparable.
+\end{hw}
+\begin{sol}
+	To extend $X$ into a linear ordered set, we have to arrange the order of $r_1 + r_2 + \cdots + r_k $ elements, but since no two elements from the different $X$ are comparable and Each $X_i$ is linearly ordered by $\preceq$, thus the number of linear extensions is ${r_1 + r_2 + \cdots + r_k \choose r_1, r_2, \dots,r_k }$.
+\end{sol}
+
+\begin{hw}
+There are $n$ married couples attending a dance. How many ways are there to form $n$ pairs for dancing if no wife should dance with their husband.
+\end{hw}
+\begin{sol}
+	If we give each couple an integer number, ranging from $1$ to $n$, as their id, and we view the husbands as envelopes, wifives as letters, then this question is to calculate the number of derangements of n letters to n envelopes, that is $D(n) = n!(1 - \frac{1}{1!} + \frac{1}{2!} - \cdots + (-1)^{n}\frac{1}{n!})$.
+\end{sol}
+
+
+\begin{hw}
+Count the permutations with exactly $k$ fixed points.  (Remark: $\pi$ is a permutation of the set \{1,2,\ldots, n\}. Call an index $i$ with $\pi(i)=i$ a \emph{fixed point} of the permutation $\pi$.)
+\end{hw}
+\begin{sol}
+	We can count the permutations in this way, first, we choose k elements out of the set to be the fixed points, second, we make none of the rest elements in their original site. Thus, we can get the number of permutations with exactly $k$ fixed points is ${n \choose k}D(n-k) = \frac{n!}{m!}\sum_{k=0}^{n-m}\frac{(-1)^{k}}{k!}$
+\end{sol}
+
+\begin{hw}
+What is wrong with the following inductive proof that $D(n) =
+(n-1)!$ for all $n \geq 2$? Can you find a false step in it? For $n = 2$,
+the formula holds, so assume $n \geq 3$. Let $\pi$ be a permutation of
+$\{1, 2, . . . , n-1\}$ with no fixed point. We want to extend it to a permutation
+$\pi'$ of $\{1, 2, . . . , n\}$ with no fixed point. We choose a number
+$i \in \{1, 2, . . . , n-1\}$, and we define $\pi'(n) = \pi(i), \pi'(i) = n$, and $\pi'(j) = \pi(j)$ for $j\neq i$, n. This defines a permutation of $\{1, 2, . . . , n\}$, and it is easy
+to check that it has no fixed point. For each of the $D(n-1) = (n-2)!$
+possible choices of $\pi$, the index $i$ can be chosen in $n-1$ ways. Therefore,
+$D(n) = (n-2)! \cdot (n-1) = (n-1)!$.
+\end{hw}
+\begin{sol}
+	The proof of induction step is wrong, the algorithm used to extend a permutation of $n-1$ elements with no fixed points to a permutation of $n$ elements with no fixed points defines $\pi'(n) = \pi(i), \pi'(i) = n$, will miss some cases since it can never encounter the case that $\pi(i) = n$. Thus, the proof of induction step is wrong and the argument is wrong.
+\end{sol}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: tex-pdf
+%%% TeX-master: t
+%%% End:

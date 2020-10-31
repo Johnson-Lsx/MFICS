@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{xypic}
+\usepackage{txfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{amsmath, mathtools,amssymb}
+\usepackage{amsfonts,semantic,colortbl,mathrsfs,stmaryrd}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+\date{Feb 14, 2012}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{eg}{Example}
+\newtheorem{hw}{Problem}
+\newcommand{\xor}{\otimes}
+\newenvironment{sol}
+  {\par\vspace{3mm}\noindent{\it Solution}.}
+  {\qed}
+\begin{document}
+\begin{center}
+{\LARGE\bf Homework 7}\\
+\vspace{2mm}
+\end{center}
+
+\begin{hw}
+Find an example to verify the claim that `(pairwise) independence does not  imply mutual independence'.  Pls give a detailed proof.
+\end{hw}
+\begin{sol}
+	One possible example can be like this, $Pr(A) = \frac{1}{2}, Pr(B) = \frac{1}{2}, Pr(C) = \frac{1}{2}$ and $Pr(A \cap B) = \frac{1}{4}, Pr(A \cap C) = \frac{1}{4}, Pr(B \cap C) = \frac{1}{4}, Pr(A \cap B \cap C) = \frac{1}{7}$. We say $A, B$ and $C$ are pairwise independent since $Pr(A \cap B) = Pr(A)Pr(B), Pr(A \cap C) = Pr(A)Pr(C)$ and $Pr(B \cap C) = Pr(B)Pr(C)$. However, $A, B, C$ are not mutually independent, since $Pr(A \cap B \cap C) \neq Pr(A)Pr(B)Pr(C)$.
+\end{sol}
+
+
+
+\begin{hw}
+Show that, if $E_1, E_2, \ldots, E_n$ are mutually independent, then so are $\overline{E_1}, \overline{E_2},\ldots, \overline{E_n}$.
+\end{hw}
+\begin{sol}
+	Since $E_1, E_2, \ldots, E_n$ are mutually independent, for any subset $I \subseteq [1,n]$, we have $Pr\left(\bigcap_{i \in I}E_{i}\right) = \prod_{i \in I}Pr(E_{i})$. And we have, $Pr\left( \bigcap_{i \in I}\overline{E_{i}}\right) = 1 - Pr\left( \bigcup_{i \in I}{E_{i}}\right)$. By \emph{inclusion-exclusion principle}, we further have $Pr\left( \bigcap_{i \in I}\overline{E_{i}}\right) = 1 - \sum_{i \in I}Pr(E_{i}) + \sum_{i \in I, j \in I, i < j}Pr(E_{i} \cap E_{j}) + \cdots = \prod_{i \in I}(1 - Pr(E_{i})) = \prod_{i \in I}Pr\left(\overline{E_{i}}\right)$. Thus, $\overline{E_1}, \overline{E_2},\ldots, \overline{E_n}$ are mutually independent.
+\end{sol}
+
+
+\begin{hw} The problem on the 37$^{st}$ page of slide on `\emph{Probability: a quick review}' (i.e., \emph{the more complicated example}). (What is $Pr(U|W)$ ?)
+
+\end{hw}
+\begin{sol}
+	\begin{displaymath}
+		\renewcommand\arraystretch{1.3}
+		\begin{array}{lcl}
+			Pr(U|W) & = & \frac{Pr(U \cap W)}{Pr(W)} \\
+		        	& = & \frac{Pr(R) \cdot Pr(U \cap W|R) + Pr(\neg R) \cdot Pr(U \cap W|\neg R)}{Pr(R) \cdot Pr(W|R) + Pr(\neg R) \cdot Pr(W|\neg R)}
+		\end{array}
+	\end{displaymath}
+	We have $Pr(R) = 0.8$, thus $Pr(\neg R) = 0.2$ and $Pr(U \cap W|R) = Pr(U|R) \cdot Pr(W|R), Pr(U \cap W|\neg R) = Pr(U|\neg R) \cdot Pr(W|\neg R)$,then we can figure out that $Pr(U|W) = 0.8$.
+\end{sol}
+
+
+\begin{hw} Suppose $X$ and $Y$ are two independent random variables, show that
+\[ E(X\cdot Y)=E[X]\cdot E[Y]\].
+\end{hw}
+\begin{sol}
+	By definition we have 
+	\begin{displaymath}
+		\begin{array}{lcl}
+			E[X \cdot Y] & = & \sum(x \cdot y) \cdot Pr(X \cdot Y = x \cdot y) \\
+						 & = & \sum_{x}\sum_{y}(x \cdot y) \cdot Pr(X = x \cap Y = y) \\
+						 & = & \sum_{x}\sum_{y}(x \cdot y) \cdot Pr(X = x) \cdot Pr(Y = y) \\
+						 & = & \sum_{x}x \cdot Pr(X = x) \sum_{y} y \cdot Pr(Y=y) \\
+						 & = & E[X]\cdot E[Y]
+		\end{array}
+	\end{displaymath}
+\end{sol}
+
+\begin{hw}
+ A monkey types on a 26 -letter keyboard that has lowercase letters only.
+Each letter is chosen independently and uniformly at random from the alphabet. If the
+monkey types 1,000,000 letters. what is the expected number of times the sequence
+``proof'' appears?
+\end{hw}
+\begin{sol}
+	\[ E[X] = \frac{1}{26} \times (1000000 - 4) = 0.08\]
+\end{sol}
+
+
+\begin{hw}[Open question]
+Find a real-life case which is related to the so-called \emph{Simpson's Paradox}.  Try to explain (the reason and the possible effects) and solve the `paradox' in your case.
+\end{hw}
+\begin{sol}
+	Assume we have carried out a survey at two high schools, the result is shown as below.
+	\begin{table}[h]
+		\footnotesize
+		\centering
+		\label{Res}
+		\renewcommand\arraystretch{1.1}
+		\begin{tabular}{cccc}
+			
+			\hline
+			\textbf{School} & \textbf{Student gender} & \textbf{Num} & \textbf{Average Score}\\ \hline
+			  & Male & 275  & 71.5\% \\
+			A & Female   & 25   & 62.0\% \\
+			  & Total              & 300  & 70.7\% \\
+			\hline
+			  & Male & 150  & 73.5\% \\
+			B & Female    & 150   & 64.5\% \\
+			  & Total              & 300  & 69.0\% \\
+			 \hline
+		\end{tabular}
+	\end{table}
+	We can see School A is better if we look at the data from the perspective of gender, but if we look at the total average score, then it seems school B is better. The reason is that in this survey we only choose $25$ female students but $275$ male students in school A. To solve this problem, the number of female students should be the same as that of male students that is, both are $150$.
+\end{sol}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: tex-pdf
+%%% TeX-master: t
+%%% End:

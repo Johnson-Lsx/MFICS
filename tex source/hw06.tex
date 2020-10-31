@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{xypic}
+\usepackage{txfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{amsmath, mathtools,amssymb}
+\usepackage{amsfonts,semantic,colortbl,mathrsfs,stmaryrd}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+\date{Feb 14, 2012}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{eg}{Example}
+\newtheorem{hw}{Problem}
+\newcommand{\xor}{\otimes}
+\newenvironment{sol}
+  {\par\vspace{3mm}\noindent{\it Solution}.}
+  {\qed}
+\begin{document}
+\begin{center}
+{\LARGE\bf Homework 6}\\
+\vspace{2mm}
+\end{center}
+
+\begin{hw}
+  Which of the following statements about graph $G$ and $H$ are true?
+  \begin{enumerate}
+    \item $G$ and $H$ are isomorphic if and only if for every map $f:V(G)\rightarrow V(H)$ and for any two vertices $u,v\in V(G)$, we have $\{u,v\}\in E(G)\Leftrightarrow \{f(u),f(v)\}\in E(H)$.
+    \item $G$ and $H$ are isomorphic if and only if there exists a bijection $f: E(G)\rightarrow E(H)$.
+    \item If there exists a bijection $f:V(G)\rightarrow V(H)$ such that every vertex $u\in V(G)$ has the same degree as $f(u)$, then $G$ and $H$ are isomorphic.
+    \item If $G$ and $H$ are isomorphic, then there exists a bijection $f:V(G)\rightarrow V(H)$ such that every vertex $u\in V(G) $ has the same degree as $f(u)$.
+    \item If $G$ and $H$ are isomorphic, then there exists a bijection $f: E(G)\rightarrow E(H)$.
+    \item $G$ and $H$ are isomorphic if and only if there exists a map $f:V(G)\rightarrow V(H)$ such that for any two vertices $u,v\in V(G)$, we have $\{u,v\}\in E(G)\Leftrightarrow \{f(u),f(v)\}\in E(H)$.
+    \item Every graph on $n$ vertices is isomorphic to some graph on the vertex set $\{1,2,\ldots, n\}$.
+    \item Every graph on $n\geq 1$ vertices is isomorphic to infinitely many graphs.
+  \end{enumerate}
+\end{hw}
+\begin{sol}
+	The right statements are $4, 5, 7, 8$. The rest statements are wrong for following reasons.
+	\begin{itemize}
+		\item For statement $1$ it is not ``for every map $f:V(G)\rightarrow V(H)$''.
+		\item For statement $2$ ``there exists a bijection $f: E(G)\rightarrow E(H)$'' can not guarantee $G$ and $H$ are isomorphic, otherwise, any two graphs with the same number of edges are isomorphic.
+		\item For statement $3$, it is easy to find a counterexample if we treat two triangles as $G$ and treat a hexagon as $H$.
+		\item For statement $6$, $f$ should be a bijection.
+	\end{itemize} 
+\end{sol}
+
+\begin{hw}
+\noindent Two simple graphs $G=(V,E)$ and $G'=(V',E')$. A map $f: V\rightarrow V'$. Now if $f$ satisfies:
+\begin{enumerate}[i)]
+  \item It is a bijective function;
+  \item $\{x,y\}\in E$ if and only if $\{f(x), f(y)\}\in E'$;
+\end{enumerate}
+Then we say that graph $G$ and $G'$ are \emph{isomorphic} to each other. We use  $G\cong G'$ to stand for the isomorphism relation.
+
+Consider the following questions:
+\begin{enumerate}
+  \item \label{q1}$G=K_n$ (Recall: $K_n$ is a clique with $n$ vertices), $g: V\rightarrow V'$ is a function which only satisfies requirement ii). Prove that $G'$ must contain a subgraph which is a clique with $n$-vertices.
+  \item $G=K_{n,m}$ (Recall: $K_{n,m}$ is the so-called \emph{complete bipartite graphs}), $g$ is the same as in question 1.  What will be the simplest $G'$ that is related to $G$ under the new relation.
+\end{enumerate}
+\end{hw}
+\begin{sol}
+	\begin{enumerate}
+		\item We first prove that $g$ is an injective function, that is for any $v_1 \in V, v_2 \in V$, if $v_1 \neq v_2$, then $g(v_1) \neq g(v_2)$. Suppose it is not that case, then there exist two vertices, say $v_1,v_2$ such that $v_1 \neq v_2$ but $g(v_1) = g(v_2)$. Since $v_1 \neq v_2$, we can have the edge $\{v_1,v_2\}$ in $G$, however $g(v_1) = g(v_2)$, then we can not have the edge $\{g(v_1),g(v_2)\}$. This contradicts $ii)$. Thus, we have that $g$ is an injective function. Since $g$ is an injective function, then the $n$ vertices in $G$ are mapped to $n$ different vertices in $G'$, and by $ii)$ we have $\{x,y\}\in E$ if and only if $\{f(x), f(y)\}\in E'$. Since $G=K_n$, every two vertices have an edge between them, thus there must be $n$ different vertices in $G'$ that every two vertices in them are connected by an edge. So $G'$ must contain a subgraph which is a clique with $n$-vertices.
+		
+		\item Since $g$ only satisfies requirement $ii)$, we can let all the vertices on one side of $G$ be mapped to a vertex and all the vertices on the other side be mapped to another vertex. Thus the simplest $G'$ that is related to $G$ under the new relation is $K_{1,1}$.
+	\end{enumerate}
+\end{sol}
+
+\begin{hw}
+How many graphs on the vertex set $\{1,2,\ldots,2n\}$ are isomorphic to the graph consisting of $n$ vertex-disjoint edges (i.e. with edge set \{\{1,2\},\{3,4\},\ldots, \{2n-1,2n\}\}?
+\end{hw}
+\begin{sol}
+	To do this, we need to divide the $2n$ vertices in to $n$ groups and each group has $2$ vertices. We can do this by inserting a plank every two elements in a permutation of the $2n$ vertices, thus creat $n$ boxes, however the order of the $n$ boxes dose not matter, and the order of the two elements in the box also dose not matter. Thus, we can calculate the answer is $\frac{2n!}{n! \cdot 2^{n}} = (2n-1)!!$.
+\end{sol}
+
+\begin{hw}
+Construct an example of a sequence of length $n$ in which each term is some of the numbers $1,2,\ldots, n-1$ and which has an even number of odd terms, and yet the sequence is not a graph score. Show why it is not a graph score.
+\end{hw}
+\begin{sol}
+	I find it hard to give a general format, I just come up with a specific counterexample that is $1,2,3,4,5,5$ for the case that $n=6$. By \textbf{Score Theorem} we have $1,2,3,4,5,5$ is a graph score if and only if $0,1,2,3,4$ is a graph score. And $0,1,2,3,4$ is a graph score if and only if $-1,0,1,2$ is a graph score, since $-1,0,1,2$ is not a graph score, so $1,2,3,4,5,5$ is not a graph score.
+\end{sol}
+
+\begin{hw}
+Let $G$ be a graph with 9 vertices, each of degree 5 or 6. Prove that it has at least 5 vertices of degree 6 or at least 6 vertices of degree 5.
+\end{hw}
+\begin{sol}
+	Let $n$ denote the number of vertices of degree $6$. If $n \geq 5$, then the statement is already true. Now, consider that $n \leq 4$, we say that actually $n \leq 3$. If $n = 4$, then there will be $9-4=5$ vertices of degree $5$. Since the graph has 9 vertices, each of degree $5$ or $6$, thus this result in that the graph has odd number of vertices, which have odd degree, this contradicts the \textbf{hand-shake lemma}. Thus, we have the number of vertices of degree $5$ is greater than or equal to $9-3=6$. So the statement is true.
+\end{sol}
+
+\begin{hw}
+Given a sequence $(d_1, d_2, \ldots, d_n)$ of  positive integers (where $n\geq 1$):
+\begin{enumerate}[(i)]
+  \item There exists a tree with score $(d_1, d_2, \ldots, d_n)$.
+  \item $\sum_{i=1}^{n}d_i=2n-2$.
+\end{enumerate}
+Prove that (i) and (ii) are equivalent.
+\end{hw}
+\begin{sol}
+	\begin{enumerate}
+		\item $(i) \rightarrow (ii)$. If there exists a tree with score $(d_1, d_2, \ldots, d_n)$, then we know that the tree has $n$ vertices and by Euler's formula we know the tree has $n-1$ edges. Thus $\sum_{i=1}^{n}d_i=2n-2$.
+		\item $(ii) \rightarrow (i)$. We prove this statement by induction on $n$.\\
+		\textbf{Basis step.} When $n = 2$, the statement is true.\\
+		\textbf{Induction hypothesis.} Assume that when $n = k$ the statement is true, that is given a sequence $(d_1,d_2,\ldots,d_k)$, if $\sum_{i=1}^{k}d_i=2k-2$, then there exists a tree with score $(d_1, d_2, \ldots, d_k)$.\\
+		\textbf{Proof of induction step.} When $n = k+1$, assume that we write the sequence in nondecreasing order, that is $d_1 \leq d_2 \leq \cdots \leq d_{k+1}$. Since $\sum_{i=1}^{k+1}d_i=2(k+1)-2$, we can say that there must exists a vertex whose degree is $1$, assume that $d_1 = 1$. We can also say that there must exists some vertices whose degree are greater than or equal to $2$. Assume that $d_j$ is the first number in the sequence such that $d_j \geq 2$. Now consider the following sequence $(d_2,d_3,\ldots,d_j-1,\ldots,d_{k+1})$, its length is $k$ and the sum of its items is $2(k+1) - 2 -1 - 1 = 2k-2$. Thus, by induction hypothesis, we know that there exists a tree with the score sequence $(d_2,d_3,\ldots,d_j-1,\ldots,d_{k+1})$, then we add a vertex $v_1$ and an edge $(v_1,v_j)$ to it, this gives us a tree with exactly the score sequence $(d_1, d_2, \ldots, d_n)$, where $d_1 = 1$. Thus, the statement that $(ii) \rightarrow (i)$ is true.
+	\end{enumerate}
+\end{sol}
+\end{document}
+
+%%% Local Variables:
+%%% mode: tex-pdf
+%%% TeX-master: t
+%%% End:

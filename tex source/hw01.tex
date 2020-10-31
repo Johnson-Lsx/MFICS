@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\date{Feb 14, 2012}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{eg}{Example}
+\newtheorem{hw}{Problem}
+\newcommand{\xor}{\otimes}
+\newenvironment{sol}
+{\par\vspace{3mm}\noindent{\it Solution}.}
+{\qed}
+\begin{document}
+	\begin{center}
+		{\LARGE\bf Homework 1}\\
+		\vspace{2mm}
+		
+	\end{center}
+	
+	\begin{hw}
+		Show the Venn-diagram representation for the following sets:
+		
+		
+		\begin{enumerate}[(a)]
+			\item $(A\cup B)- C$
+			\item $\overline{A\oplus (B\cap C)}$
+		\end{enumerate}
+	\end{hw}
+	\begin{sol} 
+		\\
+		\begin{minipage}[h]{0.45\textwidth}
+			\centering
+			\def\firstcircle{(0,0) circle (1.5cm)}
+			\def\secondcircle{(45:2cm) circle (1.5cm)}
+			\def\thirdcircle{(0:2cm) circle (1.5cm)}
+			
+			% Now we can draw the sets:
+			\begin{tikzpicture}
+			\draw (-2,3) rectangle (4,-2);
+			\draw \firstcircle node[below] {$A$};
+			\draw \secondcircle node [above] {$B$};
+			\draw \thirdcircle node [below] {$C$};
+			
+			\begin{scope}
+			\clip \firstcircle;
+			\fill[gray] \firstcircle;
+			\fill[white] \thirdcircle;
+			\draw \firstcircle node[below] {$A$};
+			\draw \secondcircle node [above] {$B$};
+			\end{scope}
+			
+			\begin{scope}
+			\clip \secondcircle;
+			\fill[gray] \secondcircle;
+			\fill[white] \thirdcircle;
+			\draw \firstcircle node[below] {$A$};
+			\draw \secondcircle node [above] {$B$};
+			\end{scope}
+			\end{tikzpicture}
+		\end{minipage}
+		\hspace{5mm}
+		\begin{minipage}[h]{0.45\textwidth}
+			\centering
+			\def\firstcircle{(0,0) circle (1.5cm)}
+			\def\secondcircle{(45:2cm) circle (1.5cm)}
+			\def\thirdcircle{(0:2cm) circle (1.5cm)}
+			
+			% Now we can draw the sets:
+			\begin{tikzpicture}
+			\draw (-2,3) rectangle (4,-2);
+			\draw \firstcircle node[below] {$A$};
+			\draw \secondcircle node[above] {$B$};
+			\draw \thirdcircle node[below] {$C$};
+			
+			
+			\begin{scope}
+			\fill[gray] (-2,3) rectangle (4,-2);
+			\fill[white] \firstcircle;%gray
+			\fill[gray] \thirdcircle;%white
+			\draw \firstcircle node[below] {$A$};
+			\draw \thirdcircle node[below] {$C$};
+			\clip \secondcircle;
+			\fill[gray] \secondcircle;%white
+			\draw \firstcircle node[below] {$A$};
+			\draw \secondcircle node[above] {$B$};
+			\draw \thirdcircle node[below] {$C$};
+			\fill[white] \thirdcircle;%gray
+			\draw \firstcircle node[below] {$A$};
+			\clip \firstcircle;
+			\fill[gray] \secondcircle;%white
+			\draw \firstcircle node[below] {$A$};
+			\draw \secondcircle node[above] {$B$};
+			\draw \thirdcircle node[below] {$C$};
+			\end{scope}
+			
+			\end{tikzpicture}
+		\end{minipage}
+		
+	\end{sol}
+	
+	
+	\begin{hw}
+		For any sets $A$, $B$ and $C$, prove that $$A\cup B =A \cup C,  A\cap B = A\cap C  \text{~implies~}  B=C.$$
+	\end{hw}
+	\begin{sol}
+		If $B \neq C$, then there must be an element, say $x$, such that $x \in B$ but $x \notin C$. (if $x \in C$ but $x \notin B$, it can be proofed in the same way.)  Since $A\cup B =A \cup C$, we have $x \in A$. Thus $x \in (A\cap B)$, but $x \notin (A \cap C)$, this contradicts that $A\cap B = A\cap C$. Thus we can conclude that $B = C$.
+	\end{sol}
+	
+	
+	\begin{hw}
+		Show that a nonempty set has the same number of odd subsets (i.e., subsets with an odd number of elements) as even subsets.
+	\end{hw}
+	\begin{sol}
+		Assume the set has $n$ elements, it has $2^{n}$ subsets. These subsets can form $2^{n-1}$ pairs, each pair contains an odd subset and an even subset. The element appears in the very begining of the set is denoted as $a_0$, then each pair is constructed in the fllowing way, randomly selecting a subset $B$, if it is $\emptyset$ then pair it with $\{a_0\}$, if it is $\{a_0\}$ pair it with $\emptyset$. For other cases if $a_0 \notin B$, pair $B$ with the subset that formed by adding $a_0$ at the very begining of $B$. In this way we can construt $2^{n-1}$ pairs, each containing an odd subset and an even subset. Thus, the set has the same number of odd subsets as even subsets.
+	\end{sol}
+	
+	
+	\begin{hw}$A,B,C$ are three sets. and two functions $g:A\rightarrow B$, $f:B\rightarrow C$
+		\begin{enumerate}[a)~~]
+			\item If $f\circ g$ is an injective function and $g$ is surjective, show that $f$ is injective.
+			\item If $f\circ g$ is an surjective function and $f$ is injective, show that $g$ is surjective.
+		\end{enumerate}
+		(Note that $f\circ g (x) =f(g(x))$.)
+	\end{hw}
+	\begin{sol}
+		\begin{enumerate}[a)~~]
+			\item If $f$ is not injective, then $\exists y_{1}, y_{2} \in B, y_{1} \neq y_{2} \land f(y_{1}) = f(y_{2}) $. Since $g$ is surjective, we have $\forall y \in B \longrightarrow \exists x \in A \land g(x) = y$. Thus $$\exists x_{1}, x_{2} \in A, x_{1} \neq x_{2} \land g(x_{1}) = y_{1}, g(x_{2}) = y_{2}$$ \\ $$\exists x_{1}, x_{2} \in A, x_{1} \neq x_{2} \land f(g(x_{1})) = f(g(x_{2}))$$This contradicts that $f\circ g$ is an injective function. Thus we can conclude that $f$ is injective.
+			
+			\item If $g$ is not surjective, then $\exists y_{0} \in B \land \forall x \in A, g(x) \neq y_{0}$. Since $f$ is injective, then $\forall y_{1}, y_{2} \in B, y_{1} \neq y_{2} \longrightarrow f(y_{1}) \neq f(y_{2})$. Suppose that $f(y_{0}) = z_{0} \in C$, since $\forall x \in A, g(x) \neq y_{0}$, we have $\forall x \in A, f(g(x)) \neq z_{0}$. This contradicts that $f\circ g$ is an surjective function. Thus we can conclude that $g$ is surjective.
+		\end{enumerate}
+	\end{sol}
+	
+	
+	\begin{hw} $\mathcal{R}$ is a binary relation,
+		\begin{enumerate}
+			\item  Show that $\mathcal{R}$ is symmetric iff $\mathcal{R}^{-1}\subseteq \mathcal{R}$.
+			\item  Show that $\mathcal{R}$ is transitive iff $\mathcal{R}\circ\mathcal{R} \subseteq \mathcal{R}$.
+		\end{enumerate}
+	\end{hw}
+	\begin{sol}
+		\begin{enumerate}
+			\item If $\mathcal{R}$ is symmetric, then $\forall (x,y) \in \mathcal{R}^{-1} \longrightarrow (y,x) \in \mathcal{R} \longrightarrow (x,y) \in \mathcal{R}$, thus $\mathcal{R}^{-1}\subseteq \mathcal{R}$.
+			
+			If $\mathcal{R}^{-1}\subseteq \mathcal{R}$, then $\forall (x,y) \in \mathcal{R} \longrightarrow (y,x) \in \mathcal{R}^{-1} \longrightarrow (y,x) \in \mathcal{R}$, thus $\mathcal{R}$ is symmetric.
+			
+			\item If $\mathcal{R}$ is transitive, then $\forall (x,y) \in \mathcal{R}\circ\mathcal{R} \longrightarrow \exists z,(x,z) \in \mathcal{R} \land (z,y) \in \mathcal{R} \longrightarrow (x,y) \in \mathcal{R}$.
+			
+			If $\mathcal{R}\circ\mathcal{R} \subseteq \mathcal{R}$, then $\forall (x,z), (z,y) \in \mathcal{R} \longrightarrow (x,y) \in \mathcal{R}\circ\mathcal{R} \longrightarrow (x,y) \in \mathcal{R}$.
+		\end{enumerate}
+	\end{sol}
+	
+	
+	\begin{hw}
+		Prove that $\mathcal{P}(A)\approx 2^{A}$, where $A$ is any set and $2^{A}=\{f ~|~ f:A\rightarrow \{0,1\} \text{~is a function}.\}$
+	\end{hw}
+	\begin{sol}
+		To prove $\mathcal{P}(A)\approx 2^{A}$, we try to find out a one-to-one correspondence $f$ between $\mathcal{P}(A)$ and $2^{A}$. For any subset $B$ of $A$, we have $$f(B) = g(x) = \left\{\begin{array}{ll}
+		1 & \mathrm{if}\  x \in B \\
+		0 & \mathrm{if}\  x \notin B
+		\end{array} \right.$$ Thus given any subset $B$ of $A$, we can construct a funcation from $A$ to $\{0,1\}$, and for any funcation from $A$ to $\{0,1\}$, we can construct a subset $B$ of $A$.Then we may conclude that $\mathcal{P}(A)\approx 2^{A}$.
+	\end{sol}
+	
+	\begin{hw}
+		$A$ and $B$ are countable sets. Prove that
+		\begin{enumerate}
+			\item  $A\cup B$ is countable
+			\item $A\times B$ is countable
+		\end{enumerate}
+	\end{hw}
+	\begin{sol}
+		\begin{enumerate}
+			\item Since the cardinality of $A\cup B$ is at most $\aleph_{0} + \aleph_{0}$, which is equal to $\aleph_{0}$, we can conclude that $A\cup B$ is countable.
+			
+			\item Since the cardinality of $A\times B$ is at most $\aleph_{0} \cdot \aleph_{0}$, which is equal to $\aleph_{0}$, we can conclude that $A\times B$ is countable.
+		\end{enumerate}
+	\end{sol}
+	
+\end{document}
+
+%%% Local Variables:
+%%% mode: tex-pdf
+%%% TeX-master: t
+%%% End:
